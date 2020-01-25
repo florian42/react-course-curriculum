@@ -1,11 +1,10 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import PostMetaInfo from './PostMetaInfo'
+import React from "react";
+import PropTypes from "prop-types";
+import PostMetaInfo from "./PostMetaInfo";
 
-export default function Comment({comment}) {
-  console.log("comment", comment)
+export default function Comment({ comment }) {
   return (
-    <div className='comment'>
+    <div className="comment">
       <PostMetaInfo
         comment={true}
         by={comment.by}
@@ -13,7 +12,7 @@ export default function Comment({comment}) {
         id={comment.id}
         descendants={comment.descendants}
       />
-      <p dangerouslySetInnerHTML={{__html: comment.text}}/>
+      <p dangerouslySetInnerHTML={{ __html: comment.text }} />
     </div>
-  )
+  );
 }

@@ -22,9 +22,24 @@ export async function fetchItem(id) {
   return response.json();
 }
 
-export async function fetchComments(ids) {
+export async function fetchCommentsOld(ids) {
   const comments = await Promise.all(ids.map(fetchItem));
   return removeDeleted(onlyComments(removeDead(comments)));
+}
+
+export async function fetchComments(ids) {
+  let comments = await Promise.all(ids.map(fetchItem));
+  comments = removeDeleted(onlyComments(removeDead(comments)));
+  comments = await Promise.all(
+    comments.map(async comment => {
+      if (comment.kids && comment.kids.length) {
+        const children = await fetchComments(comment.kids);
+        comment.children = children;
+      }
+      return comment;
+    })
+  );
+  return comments;
 }
 
 export async function fetchMainPosts(type) {
