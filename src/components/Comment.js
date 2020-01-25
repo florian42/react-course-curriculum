@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import PostMetaInfo from './PostMetaInfo'
 
 export default function Comment({comment}) {
+  console.log("comment", comment)
   return (
     <div className='comment'>
       <PostMetaInfo
