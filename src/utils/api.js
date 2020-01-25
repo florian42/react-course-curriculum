@@ -22,13 +22,17 @@ export async function fetchItem(id) {
   return response.json();
 }
 
-export async function fetchComments(ids) {
+export async function fetchComments(ids, depth) {
+  if (typeof depth == "number") depth++;
+  else depth = 1;
+
   let comments = await Promise.all(ids.map(fetchItem));
   comments = removeDeleted(onlyComments(removeDead(comments)));
   comments = await Promise.all(
     comments.map(async comment => {
+      comment["depth"] = depth;
       if (comment.kids && comment.kids.length) {
-        const children = await fetchComments(comment.kids);
+        const children = await fetchComments(comment.kids, depth);
         comment["children"] = children;
       }
       return comment;

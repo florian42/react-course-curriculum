@@ -2,15 +2,24 @@ import React from "react";
 import PropTypes from "prop-types";
 import PostMetaInfo from "./PostMetaInfo";
 
+const commentStyle = depth => {
+  const paddingLeft = 10 * depth;
+  return {
+    background: "rgba(128, 128, 128, 0.1411764705882353)",
+    padding: "10px",
+    margin: `10px 10px 10px ${paddingLeft}px`
+  };
+};
+
 // TODO: Make this recursive
 export default function Comment({ comment }) {
   console.log("Comment", comment);
   const nestedComments = (comment.children || []).map(comment => {
-    return <Comment comment={comment} />;
+    return <Comment key={comment.id} comment={comment} />;
   });
   return (
     <React.Fragment>
-      <div className="comment">
+      <div className="comments" style={commentStyle(comment.depth)}>
         <PostMetaInfo
           comment={true}
           by={comment.by}
