@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
-import Loading from "./components/Loading";
 import Nav from "./components/Nav";
 import Post from "./components/Post";
 import Posts from "./components/Posts";
 import User from "./components/User";
 import { ThemeProvider } from "./contexts/theme";
 import "./index.css";
+import HashLoader from "react-spinners/HashLoader";
 
 function App() {
   const [theme, setTheme] = useState("light");
@@ -24,7 +24,7 @@ function App() {
           <div className="container">
             <Nav />
 
-            <React.Suspense fallback={<Loading />}>
+            <React.Suspense fallback={<HashLoader />}>
               <Switch>
                 <Route exact path="/" render={() => <Posts type="top" />} />
                 <Route path="/new" render={() => <Posts type="new" />} />

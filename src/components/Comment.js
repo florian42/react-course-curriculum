@@ -11,7 +11,6 @@ const commentStyle = depth => {
   };
 };
 
-// TODO: Make this recursive
 export default function Comment({ comment }) {
   console.log("Comment", comment);
   const nestedComments = (comment.children || []).map(comment => {

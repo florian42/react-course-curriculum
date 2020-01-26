@@ -1,10 +1,16 @@
 import queryString from "query-string";
+import { css } from "@emotion/core";
 import React from "react";
 import { fetchComments, fetchItem } from "../utils/api";
 import Comment from "./Comment";
-import Loading from "./Loading";
+import HashLoader from "react-spinners/HashLoader";
 import PostMetaInfo from "./PostMetaInfo";
 import Title from "./Title";
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+`;
 
 export default class Post extends React.Component {
   state = {
@@ -49,7 +55,7 @@ export default class Post extends React.Component {
     return (
       <React.Fragment>
         {loadingPost === true ? (
-          <Loading text="Fetching post" />
+          <HashLoader css={override} />
         ) : (
           <React.Fragment>
             <h1 className="header">
@@ -65,7 +71,7 @@ export default class Post extends React.Component {
           </React.Fragment>
         )}
         {loadingComments === true ? (
-          loadingPost === false && <Loading text="Fetching comments" />
+          loadingPost === false && <HashLoader css={override} />
         ) : (
           <React.Fragment>
             {comments.map(comment => (
