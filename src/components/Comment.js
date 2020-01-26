@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import PostMetaInfo from "./PostMetaInfo";
 
 const commentStyle = depth => {
@@ -7,7 +6,8 @@ const commentStyle = depth => {
   return {
     background: "rgba(128, 128, 128, 0.1411764705882353)",
     padding: "10px",
-    margin: `10px 10px 10px ${paddingLeft}px`
+    margin: `10px 10px 10px ${paddingLeft}px`,
+    "border-radius": "5px"
   };
 };
 

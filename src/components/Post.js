@@ -1,10 +1,10 @@
-import React from "react";
 import queryString from "query-string";
-import { fetchItem, fetchPosts, fetchComments } from "../utils/api";
+import React from "react";
+import { fetchComments, fetchItem } from "../utils/api";
+import Comment from "./Comment";
 import Loading from "./Loading";
 import PostMetaInfo from "./PostMetaInfo";
 import Title from "./Title";
-import Comment from "./Comment";
 
 export default class Post extends React.Component {
   state = {
